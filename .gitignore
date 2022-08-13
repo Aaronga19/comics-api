@@ -1,1 +1,6 @@
-comics_venv
+*env
+
+# cache
+
+*cache*
+.ipynb*
