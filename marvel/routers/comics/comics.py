@@ -49,7 +49,7 @@ async def get_one_from_keyword(keyword:str)->json:
     return data
 
 @router.get("/like/{keyword}", status_code= status.HTTP_200_OK)
-async def get_one_from_keyword(keyword:str)->json:
+async def get_one_like_keyword(keyword:str)->json:
     like = []
     try:
         my_characters = characters.all(nameStartsWith=keyword)['data']['results']
