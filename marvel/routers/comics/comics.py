@@ -67,9 +67,6 @@ async def get_one_like_keyword(keyword:str)->json:
 
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f'''Information given don't match with comics or characters in Marvel-Api''')
 
-    return like
-
-# =============================== part 3
 @router.get("/me/{id}", status_code= status.HTTP_200_OK)
 async def get_from_user(id:int)->json:
     try:
