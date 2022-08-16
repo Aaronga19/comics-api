@@ -39,8 +39,6 @@ async def get_one_from_keyword(keyword:str)->json:
 
     return character
 
-    # return {'message': f'Show items that are similar to: {keyword.capitalize()}', 'data': my_character}
-
 @router.get("/users/{id}", status_code= status.HTTP_200_OK)
 async def get_from_user(id:int)->json:
     try:
