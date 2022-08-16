@@ -7,14 +7,14 @@ jobs:
     environment:
       name: Testing
     # env:
-    #   # DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
-    #   # DATABASE_PORT: ${{secrets.DATABASE_PORT}}
-    #   # DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
-    #   # DATABASE_NAME: ${{secrets.DATABASE_NAME}}
-    #   # DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
-    #   # SECRET_KEY: ${{secrets.SECRET_KEY}}
-    #   # ALGORITHM: ${{secrets.ALGORITHM}}  
-    #   # ACCESS_TOKEN_EXPIRES_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRES_MINUTES}}
+    #   DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
+    #   DATABASE_PORT: ${{secrets.DATABASE_PORT}}
+    #   DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+    #   DATABASE_NAME: ${{secrets.DATABASE_NAME}}
+    #   DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
+    #   SECRET_KEY: ${{secrets.SECRET_KEY}}
+    #   ALGORITHM: ${{secrets.ALGORITHM}}  
+    #   ACCESS_TOKEN_EXPIRES_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRES_MINUTES}}
     
     # services:
       # postgres:
@@ -44,7 +44,8 @@ jobs:
       - name: Test with unittest Marvel API 
         run: |
           pip install unittest2
-          python marvel/tests/test_marvel_endpoint.py
+          cd marvel/tests/
+          python test_marvel_endpoint.py
     # DOCKER (deploy)
       # - name: Login to Docker Hub
       #   uses: docker/login-action@v1
