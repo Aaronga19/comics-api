@@ -41,10 +41,12 @@ jobs:
         run: python -m pip install --upgrade pip
       - name: Installing dependencies
         run: pip install -r marvel/requirements.txt
-      - name: Test with unittest Marvel API 
+      - name: Installing Marvel API and unitest dependencies
         run: |
           pip install unittest2
           pip install marvel
+      - name: Runing tests!
+        run: |
           cd marvel/tests/
           python test_marvel_endpoint.py
 # Docker:
