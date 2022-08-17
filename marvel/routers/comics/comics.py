@@ -3,7 +3,6 @@ from fastapi.encoders import jsonable_encoder
 from fastapi import status, HTTPException
 import json
 import requests
-from time import sleep
 import sys 
 sys.path.append('../../')
 from config.marvel_api import characters, comics
@@ -16,10 +15,10 @@ router = APIRouter(
 
 @router.get("/", status_code= status.HTTP_200_OK)
 async def get_all_home()->dict:
-    """Show all items that are registered in Marvel API
+    """Show all items that are registered in Marvel API.
 
     Returns:
-        list: Array divided by each comic and character
+        list: Array divided by each comic and character.
     """
     total_characters = get_all_characters(characters)
     # total_comics = get_all_comics(comics)
@@ -29,6 +28,17 @@ async def get_all_home()->dict:
 
 @router.get("/{keyword}", status_code= status.HTTP_200_OK)
 async def get_one_from_keyword(keyword:str)->json:
+    """Obtain the exact character or comic according with the argument given in the url.
+
+    Args:
+        keyword (str): Name of the character or comic.
+
+    Raises:
+        HTTPException: It couldn't find any character or comic.
+
+    Returns:
+        json: Information of the character or comic gotten by API.
+    """
     try:
         my_character = characters.all(name=keyword)['data']['results'][0]
         character_id, name, image, appearances = character_features(my_character)
@@ -49,7 +59,18 @@ async def get_one_from_keyword(keyword:str)->json:
     return data
 
 @router.get("/like/{keyword}", status_code= status.HTTP_200_OK)
-async def get_one_like_keyword(keyword:str)->json:
+async def get_like_keyword(keyword:str)->json:
+    """Get all the characters and commics that are similar with the keyword.
+
+    Args:
+        keyword (str): Name of the character or comic (Name Starts With).
+
+    Raises:
+        HTTPException: It couldn't find any character or comic similar.
+
+    Returns:
+        json: Array with all the items that containt the keyword.
+    """
     like = []
     try:
         my_characters = characters.all(nameStartsWith=keyword)['data']['results']
@@ -67,13 +88,19 @@ async def get_one_like_keyword(keyword:str)->json:
 
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f'''Information given don't match with comics or characters in Marvel-Api''')
 
-@router.get("/me/{id}", status_code= status.HTTP_200_OK)
-async def get_from_user(id:int)->json:
+    return like
+
+@router.get("/microservice/home", status_code= status.HTTP_200_OK)
+async def get_from_user()->json:
+    """Consumes users-microservice-api.
+
+    Returns:
+        json: Message from home in the microservice
+    """
     try:
-        response = requests.get('http://127.0.0.1:8001/users/')
+        response = requests.get('https://users-marvel-service-dot-deft-falcon-352618.uc.r.appspot.com')
         data = response.json()
     except Exception as err:
-        print(f"It can't connect with local host.\n Connecting with server 0.0.0.0\nERROR:{err}")
-        response = requests.get('http://0.0.0.0:8001/users/')
-        data = response.json()
-    return {'message': f'Info from: {id}', 'Data': f'{data["message"]}'}
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"Troubles connecting with server in GCP\nERROR:{err}")
+
+    return {'message': f'Request done', 'User-microservice-response': f'{data["message"]}'}

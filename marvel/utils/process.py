@@ -4,7 +4,7 @@ from marvel import Marvel
 
 
 def character_features(character:json)->tuple:
-    """_summary_
+    """Transform data received from API endpoint
 
     Args:
         character (json): Information about the character given in the endpoint
@@ -31,13 +31,13 @@ def character_features(character:json)->tuple:
     return character_id, name, image, appearances
 
 def comics_features(comic:json)->tuple:
-    """_summary_
+    """Transform data received from API endpoint
 
     Args:
-        character (json): Information about the character given in the endpoint
+        character (json): Information about the comic given in the endpoint
 
     Returns:
-        tuple: Data filtered according to the character given
+        tuple: Data filtered according to the comic given
     """
     comic_id = comic['id']
     title = comic['title']     
@@ -50,6 +50,14 @@ def comics_features(comic:json)->tuple:
     return comic_id, title, images, on_sale_sate
 
 def get_all_characters(characters:Marvel)->list:
+    """Obtain all the characters of the endpoint
+
+    Args:
+        characters (Marvel): Endpoint conection of the official API about characters
+
+    Returns:
+        list: Array of json with all the data about characters
+    """
     print('Obtaining characters')
     total_len_characters = characters.all()['data']['total']
     total_characters = []
@@ -67,6 +75,14 @@ def get_all_characters(characters:Marvel)->list:
     return total_characters
 
 def get_all_comics(comics:Marvel)->list:
+    """Obtain all the comics of the endpoint
+
+    Args:
+        comics (Marvel): Endpoint conection of the official API about characters
+
+    Returns:
+        list: Array of json with all the data about characters
+    """
     print('Obtaining comics')
     total_len_comics = comics.all()['data']['total']
     total_comics = []
