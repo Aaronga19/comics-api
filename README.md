@@ -1,13 +1,6 @@
 # Marvel - Microservices
 
 Project focused in order to manage users and through microservices connect favorite commics according to each user registered in the app
-# CI/CD 
-This repository has been configured with CI/CD, to automate testing process. The pipeline is configured in the next file
-[CI/CD](https://github.com/Aaronga19/comics-api/blob/main/.github/workflows/build_docker_testing.yml)
-
-The evidence of the execution, you will find at [GitHub-Actions](https://github.com/Aaronga19/comics-api/actions). The select the last action in main branch. There, you'll see:   Now, you have to select a job, so, in the step number 7, there is a execution called _Running tests!_. As you can see, these tests have been executed succesfully.
-
-
 
 # Endpoints
 
@@ -47,3 +40,20 @@ ___URL USERS-MARVEL-API Hosting___
 > Swagger UI
 > 
 > > [Users-Marvel Microservice (App Engine)](https://users-marvel-service-dot-deft-falcon-352618.uc.r.appspot.com/docs)
+
+
+# CI/CD 
+This repository has been configured with CI/CD, to automate testing process. The pipeline is configured in the next file
+[CI/CD](https://github.com/Aaronga19/comics-api/blob/main/.github/workflows/build_docker_testing.yml)
+
+The evidence of the execution, you will find at [GitHub-Actions](https://github.com/Aaronga19/comics-api/actions). Then select the last action in main branch. There, you'll see: 
+
+<img src="https://user-images.githubusercontent.com/66045880/185196372-953c0bce-dc0c-436b-b2b7-ce1eca26e24d.png" width="300" height="400" class="centerImage">
+Now, you have to select a job, so, in the step number 7, there will have a execution called _Running tests!_. 
+
+
+<img src="https://user-images.githubusercontent.com/66045880/185196529-d80339db-bf29-4b15-83c0-ab4050cf5008.png" width="300" height="400">
+
+<img src="https://user-images.githubusercontent.com/66045880/185196569-6519d6fa-7049-4738-b6f5-f37a7d0bd6dd.png" width="300" height="400">
+
+As you can see, these tests have been executed succesfully.
