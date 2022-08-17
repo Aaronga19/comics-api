@@ -6,29 +6,6 @@ jobs:
   Testing_Marvel_API:
     environment:
       name: Testing Marvel-API
-    # env:
-    #   DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
-    #   DATABASE_PORT: ${{secrets.DATABASE_PORT}}
-    #   DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
-    #   DATABASE_NAME: ${{secrets.DATABASE_NAME}}
-    #   DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
-    #   SECRET_KEY: ${{secrets.SECRET_KEY}}
-    #   ALGORITHM: ${{secrets.ALGORITHM}}  
-    #   ACCESS_TOKEN_EXPIRES_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRES_MINUTES}}
-    
-    # services:
-      # postgres:
-        # image: postgres
-        # env: 
-        #   POSTGRES_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
-        #   POSTGRES_DB: ${{secrets.DATABASE_NAME}}_test
-        # ports:
-        # - 5432:5432
-        # options: >-
-        #   --health-cmd pg_isready
-        #   --health-interval 10s
-        #   --health-timeout 5s
-        #   --health-retries 5
     runs-on: ubuntu-latest
     steps:
       - name: Pulling git repo
@@ -53,15 +30,18 @@ jobs:
   Testing_Users_API:
     environment:
       name: Testing Users-API
-    # env:
-    #   DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
-    #   DATABASE_PORT: ${{secrets.DATABASE_PORT}}
-    #   DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
-    #   DATABASE_NAME: ${{secrets.DATABASE_NAME}}
-    #   DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
-    #   SECRET_KEY: ${{secrets.SECRET_KEY}}
-    #   ALGORITHM: ${{secrets.ALGORITHM}}  
-    #   ACCESS_TOKEN_EXPIRES_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRES_MINUTES}}
+    env:
+      database_hostname: ${{secrets.DATABASE_HOSTNAME}}
+      database_password: ${{secrets.DATABASE_PASSWORD}}
+      database_name: ${{secrets.DATABASE_NAME}}
+      database_username: ${{secrets.DATABASE_USERNAME}}
+      database_collection: users ${{secrets.DATABASE_COLLECTION}}
+      secret_key: ${{secrets.SECRET_KEY}}
+      algorithm: ${{secrets.ALGORITHM}}
+      access_token_expires_minutes: ${{secrets.ACCESS_TOKEN_EXPIRES_MINUTES}}
+      api_key: ${{secrets.API_KEY}}
+      api_key_name: ${{secrets.API_KEY_NAME}}
+      cookie_domain: ${{secrets.COOKIE_DOMAIN}}
     
     # services:
       # postgres:
