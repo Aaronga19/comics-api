@@ -1,13 +1,13 @@
 from datetime import datetime, date
 
 def age(birthdate:datetime)->int:
-    """Calculates the age
+    """Calculates the age.
 
     Args:
-        birthdate (datetime): _description_
+        birthdate (datetime): Data of birth of the user.
 
     Returns:
-        int: _description_
+        int: Actual age.
     """
     today = date.today()
     age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
