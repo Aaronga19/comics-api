@@ -1,6 +1,6 @@
 # Marvel - Microservices
 
-Project focused in order to manage users and through microservices connect favorite commics according to each user registered in the app
+project focused on managing users through microservices, connecting favorite Marvel comics according to each user registered in the app
 
 # Endpoints
 
@@ -48,9 +48,13 @@ This repository has been configured with CI/CD, to automate testing process. The
 
 The evidence of the execution, you will find at [GitHub-Actions](https://github.com/Aaronga19/comics-api/actions). Then select the last action in main branch. There, you'll see: 
 
-<img src="https://user-images.githubusercontent.com/66045880/185196372-953c0bce-dc0c-436b-b2b7-ce1eca26e24d.png" width="300" height="400" class="centerImage">
-Now, you have to select a job, so, in the step number 7, there will have a execution called _Running tests!_. 
+<img src="https://user-images.githubusercontent.com/66045880/185210194-56c2afeb-8768-4d57-a355-5d2cfd0f0485.png" width="900" height="500">
 
+Now, you have to select a job.
+
+<img src="https://user-images.githubusercontent.com/66045880/185196372-953c0bce-dc0c-436b-b2b7-ce1eca26e24d.png" width="300" height="400">
+
+So, in the step number 7, there will be an execution called _Running tests!_. 
 
 <img src="https://user-images.githubusercontent.com/66045880/185196529-d80339db-bf29-4b15-83c0-ab4050cf5008.png" width="300" height="400">
 
