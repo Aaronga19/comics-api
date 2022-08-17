@@ -3,7 +3,7 @@ name: Testing and build docker
 on: [push, pull_request]
 
 jobs:
-  Testing Marvel-API:
+  Testing_Marvel_API:
     environment:
       name: Testing Marvel-API
     # env:
@@ -33,10 +33,10 @@ jobs:
     steps:
       - name: Pulling git repo
         uses: actions/checkout@v2 
-      - name: Installing python 3.7
+      - name: Installing python 3.8
         uses: actions/setup-python@v2
         with:
-          python-version: '3.7'
+          python-version: '3.8'
       - name: Update pip
         run: python -m pip install --upgrade pip
       - name: Installing dependencies
@@ -50,7 +50,7 @@ jobs:
           cd marvel/tests/
           python test_marvel_endpoint.py
 
-  Testing Users-API:
+  Testing_Users_API:
     environment:
       name: Testing Users-API
     # env:
@@ -80,10 +80,10 @@ jobs:
     steps:
       - name: Pulling git repo
         uses: actions/checkout@v2 
-      - name: Installing python 3.7
+      - name: Installing python 3.8
         uses: actions/setup-python@v2
         with:
-          python-version: '3.7'
+          python-version: '3.8'
       - name: Update pip
         run: python -m pip install --upgrade pip
       - name: Installing dependencies
