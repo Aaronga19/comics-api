@@ -19,7 +19,15 @@ router = APIRouter(
 )
 
 @router.get("/", status_code= status.HTTP_200_OK)
-async def get_all_home(api_key:APIKey = Depends(get_api_key))->json:
+async def get_all_home(api_key:APIKey = Depends(get_api_key))->list:
+    """Obtained all the users registered in data base with the password hashed.
+
+    Args:
+        api_key (APIKey, optional): Key necessary to do requests. Defaults to Depends(get_api_key).
+
+    Returns:
+        list: All the users registered in the application.
+    """
     user_list = []
     users = users_collection.find({})
     for user in users:
@@ -30,6 +38,15 @@ async def get_all_home(api_key:APIKey = Depends(get_api_key))->json:
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_user(user: schemas.UserCreate, api_key:APIKey = Depends(get_api_key))->json:
+    """Creates a new user according with information given.
+
+    Args:
+        user (schemas.UserCreate): Information of the user that is going to be registered.
+        api_key (APIKey, optional): Key necessary to do requests. Defaults to Depends(get_api_key).
+
+    Returns:
+        json: Message success
+    """
     # HASH the password
     hashed_password = password.hash_password(user.password)
     user.password = hashed_password
@@ -37,9 +54,21 @@ async def create_user(user: schemas.UserCreate, api_key:APIKey = Depends(get_api
     users_collection.insert_one(jsonable_encoder(user)) 
     return {'message':'user created succesfully'}
 
-@router.post("/login", status_code= status.HTTP_200_OK)
+@router.post("/login", status_code= status.HTTP_202_ACCEPTED)
 async def user_login(user:schemas.GetUser, api_key:APIKey = Depends(get_api_key))->json:
+    """After do a post request with email and password, the endpoint assings a token JWT
 
+    Args:
+        user (schemas.GetUser): Credentials of the users to be able to login.
+        api_key (APIKey, optional): Key necessary to do requests. Defaults to Depends(get_api_key).
+
+    Raises:
+        HTTPException: Incorrect email.
+        HTTPException: Incorrect password.
+
+    Returns:
+        json: Credentials as authenticated user.
+    """
     user_found = users_collection.find_one({"email":user.email})
     if user_found != None:
        
@@ -59,6 +88,14 @@ async def user_login(user:schemas.GetUser, api_key:APIKey = Depends(get_api_key)
 
 
 @router.get("/secure_endpoint")
-async def get_open_api_endpoint(api_key: APIKey = Depends(get_api_key)):
+async def get_open_api_endpoint(api_key: APIKey = Depends(get_api_key))->json:
+    """Endpoint to verify api-key is working.
+
+    Args:
+        api_key (APIKey, optional): Key necessary to do requests. Defaults to Depends(get_api_key).
+
+    Returns:
+        json: Response of the endpoint with a little message.
+    """
     response = "What a cool funciton"
     return {'message': response}
